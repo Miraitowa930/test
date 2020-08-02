@@ -1,0 +1,197 @@
+*{
+  padding: 0%;
+  margin: 0%;
+}
+#app{
+  width: 550px;
+  /* height: 240px; */
+  border: 1px solid rgba(180, 177, 177,.2);
+  margin: 80px auto;
+  border-radius: 10px;
+}
+ul li{
+  list-style: none;
+}
+#app .goods{
+  text-indent: 2em;
+  font-size: 12px;
+  display: flex;
+  border-bottom: 1px dotted  rgba(180, 177, 177,.2);
+  align-content: flex-start;
+  align-items: center;
+}
+#app .goods:last-child{
+  border-bottom:none ;
+}
+#app .goods  .type-list{
+  display:flex;
+  text-indent: 0;
+ 
+
+}
+#app .type-list .type{
+  float:left;
+  margin:20px  8px;
+  padding: 2px  2px;
+  cursor: pointer;
+  border-radius: 5px;
+   color: blue;
+}
+#app .goods .type-list .type:hover{
+  background-color: rgb(238, 220, 143);
+  color: rgb(235, 116, 48);
+
+}
+#app .goods .type-list .type.active{
+  color: white;
+  background-color: orangered;
+}
+
+#app .choose-type{
+  text-indent: 2em;
+  display: flex;
+  align-items: center;
+  font-size: 12px; 
+  font-weight: bold;
+
+
+}
+#app .choose-type .no-goods {
+  display: flex;
+  color: #999;
+  font-weight: normal;
+  margin: 20px;
+  font-weight: initial;
+}
+#app .choose-type .filter-list {
+  display: flex;
+  font-weight: normal;
+}
+#app .choose-type  .filter-list li{
+  text-indent: 0;
+  margin:20px  8px;
+  padding: 2px  2px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+  background-color: orangered;
+}
+#app .choose-type .filter-list li .delete-goods {
+  opacity: .5;
+}
+
+#app .choose-type .filter-list li .delete-goods:hover {
+  opacity: 1;
+}
+
+
+
+
+
+ /* * {
+  margin: 0;
+  padding: 0;
+}
+
+ul, li {
+  list-style: none;
+}
+
+#app {
+  width: 550px;
+  margin: 80px auto;
+  padding: 5px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #666;
+}
+
+#app .goods {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px dashed #eee;
+  text-indent: 2em;
+}
+
+#app .goods:last-child {
+  border-bottom: none;
+}
+
+#app .goods .type-list {
+  display: flex;
+  text-indent: 0;
+}
+
+#app .goods .type-list .type {
+  margin: 15px 7px;
+  padding: 5px 6px;
+  border-radius: 3px;
+  color: #039;
+  cursor: pointer;
+}
+
+#app .goods .type-list .type:hover {
+  color: #f60;
+  background-color: #f3edc2;
+}
+
+#app .goods .type-list .type.active {
+  color: #fff;
+  background-color: #f60;
+}
+
+#app .choose-type {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+#app .choose-type .no-goods {
+  color: #999;
+  font-weight: normal;
+  padding: 20px;
+}
+
+#app .choose-type .filter-list {
+  display: flex;
+  font-weight: normal;
+}
+
+#app .choose-type .filter-list li {
+  margin: 15px 10px;
+  padding: 5px 8px;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #f60;
+  cursor: pointer;
+}
+
+#app .choose-type .filter-list li .delete-goods {
+  opacity: .5;
+}
+
+#app .choose-type .filter-list li .delete-goods:hover {
+  opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+ */
+
+
+
+
+
+
+
+
+
