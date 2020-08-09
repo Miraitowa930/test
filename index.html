@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+
+    <!-- 
+ 2.0 开始使用VUE
+   
+    <div id="app">
+        {{ msg }}
+
+    </div>
+    <script>
+
+        //在Jquery中往一个容器中插入数据得先获取这个容器
+        /*  
+         const  oDiv = document.getElementById('#app');
+         const  data = "djsajka";
+         oDiv.innerText = data; 
+        */
+
+
+
+        /* *
+         * 在vue中 用el；el为element;
+         也可以从外部获取，用$mount:  vm.$mount('#app');
+         $mount与el的区别主要是：
+          当我们想要延迟加载，使用外部的$mount会更好
+         */
+
+         /* 
+         插值表达式：{{ js }}
+         1.数据
+         2.数字、字符串、boolean、arry、object
+         3.表达式
+         
+         */
+
+        const vm = new Vue({
+            el: '#app',//获得控制的区域叫模板
+            data: {
+                msg: 'sajfbchjs',//将内容插入页面时，使用插值表达式;{{}}
+                mrZhang:{
+                    name:'Noah',
+                    age:56,
+                    heigth:'165cm',
+                    weight:'80kg'
+                }
+            }
+
+        });
+      
+    </script>
+-->
+
+    <!-- 
+3.0  VUE的响应式-1 
+VUE响应式指：当数据发生变化时，页面立刻重新渲染
+
+
+    <div id="app">
+       {{ mrZhao }}
+    </div>
+
+    <script>
+         const vm = new  Vue({
+             el:'#app',
+             data:{
+                  mrZhao:{
+                     name:'Noah',
+                    height:'162cm',
+                    age:22
+                 },
+            }
+         });
+
+//   function Ceshi(config){
+//       this.data = config.data;
+        /*  for(let key in config.data){
+             this[key] = config.data[key]; // 用Jquery解释vue内部数据没有在data中
+          }
+        */
+//   }
+//   const ceshi = new Ceshi({
+//       data:{
+//           msg:'xxx',
+//       }
+//   })
+//   console.log(ceshi.data);
+    </script>
+
+//vue data中的值在vm实例对象上 vm.xxx
+//这里为vm.mrZhao
+
+/*  vue响应式为什么数据不在data中，要这样监测？
+-实现响应式要知道数据变了
+ >Object = {attrs:{}}
+ -Object.defineProperty  数据劫持(监听对象) 
+*/
+/* 
+$xxx和_xxx都是什么？
+-为了防止命名冲突
+-$是暴露出来供我们使用的属性，_vue内部使用的属性或方法 
+*/
+
+/* 什么情况下页面不会重新渲染？
+-未经声明的
+ 比如上面例子中 ，mrZhao.weight = '100kg',一开始未经声明，即使数据被更改页面也不会渲染
+-声明过的没有被使用过的，即使数据改变了也不会进行渲染(操作DOM,非常的耗费性能)
+-
+-
+-
+*/
+
+/* 
+更改数据后，页面会立刻重新渲染吗？
+不会。页面渲染的操作是异步执行的。
+它会先执行同步执行栈（1、同步【等到最后一次修改完成】后再进行2、异步【渲染】）、异步队列(宏任务、微任务，event loop事件环)
+验证更改数据后，页面不会立刻重新渲染：
+vm.msg = '段芙蓉好美';
+console.log(vm.msg,vm.$el.innerText);
+vm.msg = '段小芙好美';
+console.log(vm.msg,vm.$el.innerText);
+vm.msg = '阿芙好美';
+console.log(vm.msg,vm.$el.innerText);
+结果：只有最后一次修改完了之后  页面才渲染变为最后一次修改后的阿芙好美。
+验证宏任务在微任务完成之后执行：
+setTimeout(()=>{
+  console.log(vm.msg,vm.$el.innerText);
+},0)
+或者：
+vm.$nextTick().then(()=>{
+    console.log(vm.msg,vm.$el.innerText);
+})
+Vue.$nextTick().then(()=>{
+    console.log(vm.msg,vm.$el.innerText);
+})
+
+
+
+
+*/
+
+/* 
+vue方法：
+-vm.$el  //获取el这个容器
+
+-vm.$nextTick()；  //this为vue的实例；这里为vue
+-Vue.$nextTick(); //this为window   //这两个都可以当作一个promise使用；两个都是宏任务 
+
+*/
+
+/* 
+vm.$nextTick();  //在这个函数内部，是怎么处理宏任务和微任务的？
+-先执行微任务
+-再执行宏任务
+这个函数使用了哪些宏任务，哪些微任务？
+```js
+if(typeof Promise !== 'undefined'){
+
+}else if(typeof MutationObserver !== 'undefined'){
+
+}else if(typeof setImmediate !== 'undefined'){
+
+}else{
+//setTimeout
+}
+```
+-微任务：
+   Promise.resolve().then()
+   MutationObserver  突变观察；它会先创建一个假节点，对节点稍加改动 
+
+-宏任务：
+    setImmediate   IE下  比setTimeout执行更快一点
+   setTimeout()
+
+
+
+*/
+
+-->
+
+
+    <!-- 
+    vue响应式-2
+
+ -->
+    <div id="app">
+        {{ Allie }}
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                // 
+                mrZhao:{
+                    name:'Noah',
+                    age:46,
+                    weight:'46kg'
+                },
+                Allie:['可爱','漂亮','大方']
+            }
+        });
+
+
+        /* 
+        修改不会渲染到页面
+        -数组
+          >修改数组的长度
+          >通过索引对数据进行修改，数据修改成功了，但对页面不会进行渲染
+        -对象
+         >增删对象都不可以
+         */
+
+        
+        /* 
+        要让增加的属性数组能够在页面上渲染，vue提供的方法；
+        -数组：
+          1.数组的变异方法:(对数组进行了重写，让数组能够进行重新渲染)
+            push、pop、shift、unshift、splice、sort、reverse
+          2.vm.$set(要改谁，改什么，改成啥)  = Vue.set();  
+           eg:vm.$set(vm.mrZhao,3,'165cm');
+          3.vm.$delete(要删除谁，删除哪个);
+
+        -对象
+          1.vm.$set(要改谁，改什么，改成啥)  = Vue.set();    
+          2.vm.$delete(要删除谁，删除哪个);
+        
+         */
+    </script>
+
+    
+
+
+
+
+
+
+</body>
+
+</html>
