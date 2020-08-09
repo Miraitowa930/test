@@ -4,17 +4,138 @@
  * @Author: sueRimn
  * @Date: 2020-08-09 08:41:40
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-08-09 08:48:51
+ * @LastEditTime: 2020-08-09 16:13:24
 -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+    <script src="./vue.js"></script>
     <script src="./axios.js"></script>
 </head>
+
 <body>
-    
+    <div id="app">
+        <div class="username">
+            <input type="text" placeholder="用户名" v-model="name">
+
+        </div>
+        <div class="mail">
+            <input type="text" placeholder="邮箱" v-model="mail">
+        </div>
+        <div class="upload-btn" @click="loadUp">上传</div>
+        <div class="show-btn" @click="showPerson">显示人物信息</div>
+        <ul class="person-list" v-if="personList.length">
+            <li class="person" v-for="person in personList">
+                <span>{{ person.name }}</span>
+                <span>{{ person.mail }}</span>
+            </li>
+
+        </ul>
+    </div>
+    <script>
+        //我们也可以通过配置全局对象来实现发送请求：
+        axios.defaults.baseURL = 'https://developer.duyiedu.com/vue';
+
+
+        //通过实例进行配置：
+        // const instance = axios.create({
+        //     baseURL: "https://developer.duyiedu.com/vue",
+        // })
+
+
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                name: "",
+                mail: "",
+                msg: "",
+                personList: []
+
+            },
+            methods: {
+                loadUp() {
+                    // const { name, mail } = this;
+                    // axios.post('/setUserInfo', { name, mail }, {
+                    //     baseURL: 'https://developer.duyiedu.com/vue',
+                    // }).then(res => {
+                    //     //    this.name  = res.data.msg;
+                    //     //    this.mail = res.data.msg;
+                    //     this.msg = res.data.msg;
+                    // })
+                },
+                showPerson() {
+                    //   axios({
+                    //       method:'get',
+                    //       url:'https://developer.duyiedu.com/vue/getUserInfo'
+                    //   }).then(res=>{
+                    //       this.msg = res.data.msg;
+                    //       this.personList = res.data.data;
+                    //     //   console.log(res)
+                    //   })
+                    // }
+
+                    //另一种方式：
+                    // axios.get('/getUserInfo',{
+                    //     baseURL:'https://developer.duyiedu.com/vue',
+                    // }).then(res=>{
+                    //     this.msg = res.data.msg;
+                    //   this.personList = res.data.data;
+
+                    // })
+                    // }
+
+                    //使用默认全局配置
+                    // axios.get('/getUserInfo').then(res => {
+                    //     this.msg = res.data.msg;
+                    //     this.personList = res.data.data;
+
+                    // })
+
+
+                    //使用实例进行配置
+                    //  instance.get('/getUserInfo').then(res => {
+                    //     this.msg = res.data.msg;
+                    //     this.personList = res.data.data;
+
+                    // })
+
+                    //并发：
+                    axios.all([
+                  
+                        axios.post('/setUserInfo',{name:"Allie",mail:"123@qq.com"}),
+                        axios.get('/getUserInfo')
+                  
+                    ]).then(axios.spread((postRes,getRes)=>{
+                      
+                        console.log(postRes,getRes)
+                    }))
+
+                 
+                }
+
+
+            },
+            watch: {
+                msg() {
+                    if (this.msg === "") {
+                        return;
+                    } else {
+                        alert(this.msg);
+                    }
+
+
+
+                }
+            }
+
+        })
+
+    </script>
 </body>
+
 </html>
