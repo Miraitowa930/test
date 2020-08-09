@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+
+</head>
+<body>
+<!-- v-model  -->
+<!-- 在表单元素上创建双向数据绑定   本质上  是一个语法糖-->
+<!-- input -->
+<div id="app">
+    <!-- <input type=" text"  v-model="msg"/> -->
+    <!-- <input type="text"  @input="msg=$event.target.value"  :value="msg" /> -->
+    <!-- <input type="checkbox"   v-model="checked" />  -->
+    <!-- <input type="checkbox"  id="duan"  value="段小芙" v-model="checkList"/>
+    <label for="duan">段小芙</label>
+    <input type="checkbox"  id="A" value="Allie" v-model="checkList"/>
+    <label for="A">Allie</label>
+    <input type="checkbox"   id="N" value="Noah" v-model="checkList"/>
+    <label for="N">Noah</label> -->
+    <!-- <input type="radio"  id="duan"  value="段小芙" v-model="pickOne"/>
+    <label for="duan">段小芙</label>
+    <input type="radio"  id="A" value="Allie" v-model="pickOne"/>
+    <label for="A">Allie</label>
+    <input type="radio"   id="N" value="Noah" v-model="pickOne"/>
+    <label for="N">Noah</label> -->
+    <!-- <textarea v-model="msg" ></textarea> -->
+    <!-- <select  v-model="optionChance">
+        <option value="请选择"  disabled>请选择</option>
+        <option value="段小芙" >段小芙</option>
+        <option value="Allie" >Allie</option>
+        <option value="Noah" >Noah</option> -->
+
+        <!-- 修饰符 -->
+        <!-- .lazy   如果不想要一边写一边同步，加.lazy -->
+        <input type="text" v-model.number="msg">
+        <!-- .number  转为数字-->
+        <!-- .trim   消除  消除输入文字前后的空白字符-->
+        <!-- 不加.lazy -->
+    </select>
+
+</div>
+
+<script>
+ const  vm = new Vue({
+      el:"#app",
+      data:{
+           msg:"",
+           checked:true,
+           checkList:[],
+           pickOne:"",
+           multipleText:"hello,你好哦呀",
+           optionChance:"请选择",
+    
+
+      },
+      
+
+ })
+
+
+
+</script>
+
+
+  
+
+
+</body>
+
+</html>
