@@ -1,0 +1,32 @@
+
+<nz-layout>
+  <nz-header class="pages-header" nz-row>
+    
+    <nz-tabset >
+      <nz-tab nzTitle="G6拓扑图">
+        <router-outlet name="page-1">
+        </router-outlet>
+      </nz-tab>
+      <nz-tab nzTitle="Vis拓扑图">
+        <router-outlet name="page-2">
+        </router-outlet>
+      
+      </nz-tab>
+      <nz-tab nzTitle="jsPlumb拓扑图">
+        <router-outlet name="page-3">
+
+        </router-outlet>
+      </nz-tab>
+      <nz-tab nzTitle="自定义表头 + 新增过滤条件">
+        <router-outlet name="page-4">
+
+        </router-outlet>
+      </nz-tab>
+      <nz-tab nzTitle="大屏轮播图">
+        <router-outlet name="page-5">
+
+        </router-outlet>
+      </nz-tab>
+    </nz-tabset>
+  </nz-header>
+</nz-layout>
